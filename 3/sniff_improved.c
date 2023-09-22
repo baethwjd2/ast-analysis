@@ -24,32 +24,29 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
     struct ipheader * ip = (struct ipheader *)
                            (packet + sizeof(struct ethheader)); 
 
-    printf("  Destination IP: %s\n", inet_ntoa(ip->iph_destip));    
-    printf("       Source IP: %s\n", inet_ntoa(ip->iph_sourceip));   
+    printf("Destination IP: %s\n", inet_ntoa(ip->iph_destip));    
+    printf("     Source IP: %s\n", inet_ntoa(ip->iph_sourceip));   
 
     /* determine protocol */
     switch(ip->iph_protocol) {                                 
         case IPPROTO_TCP:
             printf("   Protocol: TCP\n");
+            struct tcpheader *tcp = (struct tcpheader *)(packet + sizeof(struct ethheader) + sizeof(struct ipheader));
 
-            if (ip->iph_protocol == IPPROTO_TCP) { // If it's a TCP packet
-                struct tcpheader *tcp = (struct tcpheader *)(packet + sizeof(struct ethheader) + sizeof(struct ipheader));
+            printf("   Destination Port: %d\n", ntohs(tcp->tcp_dport));
+            printf("        Source Port: %d\n", ntohs(tcp->tcp_sport));
+            // TCP 데이터의 위치 계산
+            int tcp_data_offset = sizeof(struct ethheader) + sizeof(struct ipheader) + (TH_OFF(tcp) * 4);
 
-                printf("    Destination Port: %d\n", ntohs(tcp->tcp_dport));
-                printf("         Source Port: %d\n", ntohs(tcp->tcp_sport));
-                // TCP 데이터의 위치 계산
-                int tcp_data_offset = sizeof(struct ethheader) + sizeof(struct ipheader) + (TH_OFF(tcp) * 4);
-
-                // TCP 데이터 길이 계산
-                int tcp_data_length = ntohs(ip->iph_len) - (sizeof(struct ipheader) + (TH_OFF(tcp) * 4));
+            // TCP 데이터 길이 계산
+            int tcp_data_length = ntohs(ip->iph_len) - (sizeof(struct ipheader) + (TH_OFF(tcp) * 4));
     
-                // TCP 데이터를 출력
-                printf("            TCP DATA: ");
-                for (int i = 0; i < tcp_data_length; i++) {
-                  printf("%c", packet[tcp_data_offset + i]);
-                }
-                printf("\n");
+            // TCP 데이터를 출력
+            printf("           TCP DATA: ");
+            for (int i = 0; i < tcp_data_length; i++) {
+              printf("%c", packet[tcp_data_offset + i]);
             }
+            printf("\n");
             return;
         case IPPROTO_UDP:
             printf("   Protocol: UDP\n");
