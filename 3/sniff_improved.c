@@ -18,14 +18,14 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
   sprintf(source_mac, "%02x:%02x:%02x:%02x:%02x:%02x", eth->ether_shost[0], eth->ether_shost[1], eth->ether_shost[2], eth->ether_shost[3], eth->ether_shost[4], eth->ether_shost[5]);
 
   printf("Destination MAC: %s\n", dest_mac);
-  printf("Source MAC: %s\n", source_mac);
+  printf("     Source MAC: %s\n", source_mac);
 
   if (ntohs(eth->ether_type) == 0x0800) { // 0x0800 is IP type
     struct ipheader * ip = (struct ipheader *)
                            (packet + sizeof(struct ethheader)); 
 
     printf("  Destination IP: %s\n", inet_ntoa(ip->iph_destip));    
-    printf("  Source IP: %s\n", inet_ntoa(ip->iph_sourceip));   
+    printf("       Source IP: %s\n", inet_ntoa(ip->iph_sourceip));   
 
     /* determine protocol */
     switch(ip->iph_protocol) {                                 
@@ -47,7 +47,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
       struct tcpheader *tcp = (struct tcpheader *)(packet + sizeof(struct ethheader) + sizeof(struct ipheader));
       
       printf("    Destination Port: %d\n", ntohs(tcp->tcp_dport));
-      printf("    Source Port: %d\n", ntohs(tcp->tcp_sport));
+      printf("         Source Port: %d\n", ntohs(tcp->tcp_sport));
       
     }
   }
