@@ -58,7 +58,7 @@ int main()
   pcap_t *handle;
   char errbuf[PCAP_ERRBUF_SIZE];
   struct bpf_program fp;
-  char filter_exp[] = "icmp";
+  char filter_exp[] = "icmp or tcp";
   bpf_u_int32 net;
 
   // Step 1: Open live pcap session on NIC with name enp0s3
