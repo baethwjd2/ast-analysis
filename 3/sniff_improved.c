@@ -13,6 +13,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
   // 출력 대상 MAC 주소를 문자열로 변환
   char dest_mac[18];
   char source_mac[18];
+  print("\n");
   sprintf(dest_mac, "%02x:%02x:%02x:%02x:%02x:%02x", eth->ether_dhost[0], eth->ether_dhost[1], eth->ether_dhost[2], eth->ether_dhost[3], eth->ether_dhost[4], eth->ether_dhost[5]);
   sprintf(source_mac, "%02x:%02x:%02x:%02x:%02x:%02x", eth->ether_shost[0], eth->ether_shost[1], eth->ether_shost[2], eth->ether_shost[3], eth->ether_shost[4], eth->ether_shost[5]);
 
