@@ -37,8 +37,8 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 
                 printf("    Destination Port: %d\n", ntohs(tcp->tcp_dport));
                 printf("         Source Port: %d\n", ntohs(tcp->tcp_sport));
-                printf("            TCP DATA: %s\n", ntohs(tcp->data));
-  
+                printf("            TCP DATA: %s\n", ntohs(tcp->tcp_data));
+            }
             return;
         case IPPROTO_UDP:
             printf("   Protocol: UDP\n");
