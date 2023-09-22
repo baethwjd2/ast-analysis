@@ -37,22 +37,8 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 
                 printf("    Destination Port: %d\n", ntohs(tcp->tcp_dport));
                 printf("         Source Port: %d\n", ntohs(tcp->tcp_sport));
-
-                // TCP 데이터 오프셋 계산
-                int data_offset = TH_OFF(tcp) * 4; // TH_OFF는 32비트 워드 단위로 헤더 길이를 나타냅니다.
-                char *tcp_data = (char *)(packet + sizeof(struct ethheader) + sizeof(struct ipheader) + data_offset);
-
-                // 데이터 길이 계산
-                int data_length = ntohs(ip->iph_len) - (sizeof(struct ipheader) + data_offset);
-                printf("TCP Data:\n");
-                for (int i = 0; i < data_length; i++) {
-                    if (i % 16 == 0) {
-                        printf("\n");
-                    }
-                    printf("%02x ", tcp_data[i]);
-                }
-                printf("\n");
-            }
+                printf("            TCP DATA: %s\n", ntohs(tcp->data));
+  
             return;
         case IPPROTO_UDP:
             printf("   Protocol: UDP\n");
