@@ -24,8 +24,8 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
     struct ipheader * ip = (struct ipheader *)
                            (packet + sizeof(struct ethheader)); 
 
-    printf("       From: %s\n", inet_ntoa(ip->iph_sourceip));   
-    printf("         To: %s\n", inet_ntoa(ip->iph_destip));    
+    printf("  Destination IP: %s\n", inet_ntoa(ip->iph_destip));    
+    printf("  Source IP: %s\n", inet_ntoa(ip->iph_sourceip));   
 
     /* determine protocol */
     switch(ip->iph_protocol) {                                 
@@ -45,15 +45,10 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 
     if (ip->iph_protocol == IPPROTO_TCP) { // If it's a TCP packet
       struct tcpheader *tcp = (struct tcpheader *)(packet + sizeof(struct ethheader) + sizeof(struct ipheader));
-
-      printf("   Source Port: %d\n", ntohs(tcp->tcp_sport));
-      printf("   Destination Port: %d\n", ntohs(tcp->tcp_dport));
-      printf("   Sequence Number: %u\n", ntohl(tcp->tcp_seq));
-      printf("   Acknowledgment Number: %u\n", ntohl(tcp->tcp_ack));
-      printf("   Flags: 0x%02x\n", tcp->tcp_flags);
-      printf("   Window Size: %d\n", ntohs(tcp->tcp_win));
-      printf("   Checksum: 0x%04x\n", ntohs(tcp->tcp_sum));
-      printf("   Urgent Pointer: %d\n", ntohs(tcp->tcp_urp));
+      
+      printf("    Destination Port: %d\n", ntohs(tcp->tcp_dport));
+      printf("    Source Port: %d\n", ntohs(tcp->tcp_sport));
+      
     }
   }
 }
