@@ -10,38 +10,9 @@ from docx import Document
 from pptx import Presentation
 from openpyxl import load_workbook
 
-# def analyze(file_path):
-#     if file_path.endswith('.docx'):
-#         document = Document(file_path)
-#         text = ""
-#         for paragraph in document.paragraphs:
-#             text += paragraph.text+"\n"
-#         print("[파일 내용]")
-#         print(text)
-
-#     elif file_path.endswith('.pptx'):
-#         presentation = Presentation(file_path)
-#         text = ""
-#         for slide in presentation.slides:
-#             for shape in slide.shapes:
-#                 if hasattr(shape,"text"):
-#                     text += shape.text + "\n"
-#         print("[파일 내용]")
-#         print(text)
-
-#     elif file_path.endswith('.xlsx'):
-#         workbook = load_workbook(filename=file_path)
-#         sheet = workbook.active
-#         data=[]
-#         for row in sheet.iter_rows(values_only=True):
-#             data.append(row)
-#         print("[파일 내용]")
-#         print(row)
-#     else:
-#         print("지원하지 않는 파일 형식입니다.")
-
+# 확장자별 zip 변환
 def convert(file_path):
-    # 확장자별 zip 변환
+
     if file_path.endswith('.docx'):
         zip_file_path = file_path.replace('.docx', '.zip')
         try:
@@ -52,7 +23,7 @@ def convert(file_path):
             print(f"파일 '{file_path}'을 찾을 수 없습니다.")
         except Exception as e:
             print(f"파일 변환 중 오류가 발생했습니다: {e}")
-
+    
     elif file_path.endswith('.pptx'):
         zip_file_path = file_path.replace('.pptx', '.zip')
         try:
@@ -77,20 +48,7 @@ def convert(file_path):
     else:
         print("지원하지 않는 파일 형식입니다.")
 
-def add_prefix(input_string, zip_path):
-    #prefix = "C:\\workspace\\parser\\"  # 백슬래시(\)는 이스케이프 문자로 두 번 써야 합니다.
-    result_string = zip_path + "\\" + input_string
-    return result_string
-
-def print_xml(xml_path):
-    try:
-        tree = ET.parse(xml_path)
-        root = tree.getroot()
-        xml_content = ET.tostring(root, encoding='utf-8').decode('utf-8')
-        print(xml_content)
-    except ET.ParseError as e:
-        print(f"XML 파싱 오류 : {e}")
-
+# zip 파일에서 입력받은 xml을 찾아 출력
 def xml_from_zip(zip_path, user_input):
     try:
         with zipfile.ZipFile(zip_path, 'r') as zip_file:
@@ -103,30 +61,30 @@ def xml_from_zip(zip_path, user_input):
         print(f"파일을 읽는 동안 오류가 발생했습니다: {e}")
 
 
+# zip 파일 내부에 있는 모든 파일의 정보 출력
 def analyze_zip_central_directory(zip_file_path):
     # ZIP 파일 열기
     with zipfile.ZipFile(zip_file_path, 'r') as zip_file:
         # 모든 파일에 대한 Central Directory 정보 출력
         for info in zip_file.infolist():
-            print("File Name:", info.filename)
-            print("Version Made By:", info.create_version)
-            print("Version Needed To Extract:", info.extract_version)
-            print("General Purpose Bit Flags:", hex(info.flag_bits))
-            print("Compression Method:", info.compress_type)
+            print("File Name:", info.filename) # 파일 이름
+            print("Version Made By:", info.create_version) # 해당 파일을 생성한 버전
+            print("Version Needed To Extract:", info.extract_version) # 압축 해제하기 위해 필요한 zip 압축 해제 버전
+            print("General Purpose Bit Flags:", hex(info.flag_bits)) # 바이트 식별자
+            print("Compression Method:", info.compress_type) # 압축 유형
             file_timestamp = os.path.getmtime(zip_file_path)
             last_mod_time = datetime.datetime.fromtimestamp(file_timestamp)
-            print("Last Mod Time:", last_mod_time)
-            print("CRC32 Checksum:", hex(info.CRC))
-            print("Compressed Size:", info.compress_size)
-            print("Uncompressed Size:", info.file_size)
-            print("File Comment:", info.comment)
-            print("Internal File Attributes:", hex(info.internal_attr))
-            print("External File Attributes:", hex(info.external_attr))
-            print("Local Header Offset:", hex(info.header_offset))
+            print("Last Mod Time:", last_mod_time) # 마지막 파일 수정 날짜, 시간
+            print("CRC32 Checksum:", hex(info.CRC)) # 파일 내용의 오류 체크
+            print("Compressed Size:", info.compress_size)  # 압축된 데이터의 크기
+            print("Uncompressed Size:", info.file_size) # 원본 데이터의 바이트 크기
+            print("File Comment:", info.comment) # 파일에 대한 코멘트나 설명
+            print("Internal File Attributes:", hex(info.internal_attr)) # 파일 내부 속성
+            print("External File Attributes:", hex(info.external_attr)) # 파일 외부 속성
+            print("Local Header Offset:", hex(info.header_offset)) # 해당 파일의 로컬 파일 헤더의 오프셋 위치
             print()
 
 if __name__ == "__main__":
-    # analyze(file_path)
     file_path = input("분석할 파일 경로 :")
     zip_path = convert(file_path)
 
@@ -140,5 +98,3 @@ if __name__ == "__main__":
             pretty_xml = dom.toprettyxml()
             print(pretty_xml)
             print()
-    #xml_path = add_prefix(user_input, zip_path)
-    #print_xml(xml_path)
