@@ -2,41 +2,46 @@ import sys
 import zipfile
 import os
 import datetime
+import xml.etree.ElementTree as ET
+import zipfile
+import xml.dom.minidom
 from os import rename
 from docx import Document
 from pptx import Presentation
 from openpyxl import load_workbook
 
-file_path = r"C:\Workspace\parser\xl_ex.xlsx"
 
-def analyze(file_path):
-    if file_path.endswith('.docx'):
-        document = Document(file_path)
-        text = ""
-        for paragraph in document.paragraphs:
-            text += paragraph.text+"\n"
-        print("[파일 내용]")
-        print(text)
-    elif file_path.endswith('.pptx'):
-        presentation = Presentation(file_path)
-        text = ""
-        for slide in presentation.slides:
-            for shape in slide.shapes:
-                if hasattr(shape,"text"):
-                    text += shape.text + "\n"
-        print("[파일 내용]")
-        print(text)
-    elif file_path.endswith('.xlsx'):
-        workbook = load_workbook(filename=file_path)
-        sheet = workbook.active
-        data=[]
-        for row in sheet.iter_rows(values_only=True):
-            data.append(row)
-        print("[파일 내용]")
-        print(row)
-    else:
-        print("지원하지 않는 파일 형식입니다.")
+file_path = r"C:\Workspace\parser\doc_ex.docx"
 
+# def analyze(file_path):
+#     if file_path.endswith('.docx'):
+#         document = Document(file_path)
+#         text = ""
+#         for paragraph in document.paragraphs:
+#             text += paragraph.text+"\n"
+#         print("[파일 내용]")
+#         print(text)
+
+#     elif file_path.endswith('.pptx'):
+#         presentation = Presentation(file_path)
+#         text = ""
+#         for slide in presentation.slides:
+#             for shape in slide.shapes:
+#                 if hasattr(shape,"text"):
+#                     text += shape.text + "\n"
+#         print("[파일 내용]")
+#         print(text)
+
+#     elif file_path.endswith('.xlsx'):
+#         workbook = load_workbook(filename=file_path)
+#         sheet = workbook.active
+#         data=[]
+#         for row in sheet.iter_rows(values_only=True):
+#             data.append(row)
+#         print("[파일 내용]")
+#         print(row)
+#     else:
+#         print("지원하지 않는 파일 형식입니다.")
 
 def convert(file_path):
     # 확장자별 zip 변환
@@ -44,8 +49,8 @@ def convert(file_path):
         zip_file_path = file_path.replace('.docx', '.zip')
         try:
             rename(file_path, zip_file_path)
-            print(f"'{file_path}' 파일이 '{zip_file_path}'로 성공적으로 변환되었습니다.")
             analyze_zip_central_directory(zip_file_path)
+            return zip_file_path
         except FileNotFoundError:
             print(f"파일 '{file_path}'을 찾을 수 없습니다.")
         except Exception as e:
@@ -55,8 +60,8 @@ def convert(file_path):
         zip_file_path = file_path.replace('.pptx', '.zip')
         try:
             rename(file_path, zip_file_path)
-            print(f"'{file_path}' 파일이 '{zip_file_path}'로 성공적으로 변환되었습니다.")
             analyze_zip_central_directory(zip_file_path)
+            return zip_file_path
         except FileNotFoundError:
             print(f"파일 '{file_path}'을 찾을 수 없습니다.")
         except Exception as e:
@@ -66,14 +71,40 @@ def convert(file_path):
         zip_file_path = file_path.replace('.xlsx', '.zip')
         try:
             rename(file_path, zip_file_path)
-            print(f"'{file_path}' 파일이 '{zip_file_path}'로 성공적으로 변환되었습니다.")
             analyze_zip_central_directory(zip_file_path)
+            return zip_file_path
         except FileNotFoundError:
             print(f"파일 '{file_path}'을 찾을 수 없습니다.")
         except Exception as e:
             print(f"파일 변환 중 오류가 발생했습니다: {e}")
     else:
         print("지원하지 않는 파일 형식입니다.")
+
+def add_prefix(input_string, zip_path):
+    #prefix = "C:\\workspace\\parser\\"  # 백슬래시(\)는 이스케이프 문자로 두 번 써야 합니다.
+    result_string = zip_path + "\\" + input_string
+    return result_string
+
+def print_xml(xml_path):
+    try:
+        tree = ET.parse(xml_path)
+        root = tree.getroot()
+        xml_content = ET.tostring(root, encoding='utf-8').decode('utf-8')
+        print(xml_content)
+    except ET.ParseError as e:
+        print(f"XML 파싱 오류 : {e}")
+
+def xml_from_zip(zip_path, user_input):
+    try:
+        with zipfile.ZipFile(zip_path, 'r') as zip_file:
+            with zip_file.open(user_input) as xml_file:
+                xml_content = xml_file.read().decode('utf-8')
+                return xml_content
+    except FileNotFoundError:
+        print(f"파일 '{zip_path}'을 찾을 수 없습니다.")
+    except Exception as e:
+        print(f"파일을 읽는 동안 오류가 발생했습니다: {e}")
+
 
 def analyze_zip_central_directory(zip_file_path):
     # ZIP 파일 열기
@@ -98,5 +129,18 @@ def analyze_zip_central_directory(zip_file_path):
             print()
 
 if __name__ == "__main__":
-    analyze(file_path)
-    convert(file_path)
+    # analyze(file_path)
+    zip_path = convert(file_path)
+
+    while True:
+        user_input = input("내용을 확인하고 싶은 파일명(xml만 가능, exit은 종료) :")
+        if user_input =="exit":
+            break
+        else:
+            xml_content = xml_from_zip(zip_path, user_input)
+            dom=xml.dom.minidom.parseString(xml_content)
+            pretty_xml = dom.toprettyxml()
+            print(pretty_xml)
+            print()
+    #xml_path = add_prefix(user_input, zip_path)
+    #print_xml(xml_path)
