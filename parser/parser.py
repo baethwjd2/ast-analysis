@@ -10,9 +10,6 @@ from docx import Document
 from pptx import Presentation
 from openpyxl import load_workbook
 
-
-file_path = r"C:\Workspace\parser\doc_ex.docx"
-
 # def analyze(file_path):
 #     if file_path.endswith('.docx'):
 #         document = Document(file_path)
@@ -130,6 +127,7 @@ def analyze_zip_central_directory(zip_file_path):
 
 if __name__ == "__main__":
     # analyze(file_path)
+    file_path = input("분석할 파일 경로 :")
     zip_path = convert(file_path)
 
     while True:
