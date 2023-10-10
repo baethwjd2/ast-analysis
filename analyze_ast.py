@@ -1,0 +1,67 @@
+# 함수 개수 추출 (희진)
+def parse_func_cnt(data):
+    func_cnt = 0
+    
+    # write your code
+    
+    return func_cnt
+
+
+# 함수 리턴 타입 추출 (하영)
+def parse_func_ret(data):
+    func_ret = list()
+    
+    # write your code
+    
+    return func_ret
+
+
+# 함수 이름 추출 (소정)
+def parse_func_name(data):
+    func_name = list()
+    
+    # write your code
+    
+    return func_name
+
+
+# 파라미터 타입과 변수명 추출 (다인)
+def parse_param_var(data):
+    param_type = list()
+    var_name = list()
+    
+    # write your code
+    
+    return param_type, var_name
+
+
+# if 조건 개수 추출 (송현)
+def parse_if_cnt(data):
+    if_cnt = 0
+    
+    # write your code
+    
+    return if_cnt
+
+
+def print_analysis(func_cnt, func_ret, func_name, param_type, var_name, if_cnt):
+    pass
+
+
+def main():
+    path = "write down your json path"
+    
+    with open(path, 'r', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+    
+    func_cnt = parse_func_cnt(data)
+    func_ret = parse_func_ret(data)
+    func_name = parse_func_name(data)
+    param_type, var_name = parse_param_var(data)
+    if_cnt = parse_if_cnt(data)
+    
+    print_analysis(func_cnt, func_ret, func_name, param_type, var_name, if_cnt)
+
+
+if __name__=="__main__":
+    main()
