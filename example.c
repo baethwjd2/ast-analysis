@@ -1,3 +1,9 @@
+int hello_world(int a){
+    printf("hello, world");
+    return a;
+}
+
+
 int main()
 {
     int matrix[11][11] = {};
@@ -45,6 +51,8 @@ int main()
         printf("\n");
     }
     
+    int a = hello_world(x);
+
     return 0;
 }
  
