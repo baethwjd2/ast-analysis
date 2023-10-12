@@ -1,3 +1,7 @@
+import sys
+import json
+
+
 # 함수 개수 추출 (희진)
 def parse_func_cnt(data):
     func_cnt = 0
@@ -19,20 +23,22 @@ def parse_func_ret(data):
 # 함수 이름 추출 (소정)
 def parse_func_name(data):
     func_name = list()
-    
-    # write your code
+
+    for i in data["ext"]:
+        if i["_nodetype"]=="FuncDef":
+            func_name.append(i['decl']['name'])
     
     return func_name
 
 
 # 파라미터 타입과 변수명 추출 (다인)
-def parse_param_var(data):
+def parse_param(data):
     param_type = list()
-    var_name = list()
+    param_name = list()
     
     # write your code
     
-    return param_type, var_name
+    return param_type, param_name
 
 
 # if 조건 개수 추출 (송현)
@@ -44,12 +50,24 @@ def parse_if_cnt(data):
     return if_cnt
 
 
-def print_analysis(func_cnt, func_ret, func_name, param_type, var_name, if_cnt):
-    pass
+def print_analysis(func_cnt, func_ret, func_name, param_type, param_name, if_cnt):
+    func_cnt = len(func_name) # func_cnt로 나중에 교체
+    
+    for i in range(func_cnt):
+        print("Function", i+1)
+        print("- Name:", func_name[i])
+        print("- Return Type:")
+        print("- Parameter Type:")
+        print("- Parameter Name:")
+        print("- Number of IF Statement:")
+        
+        
+        if i!=func_cnt-1:
+            print("")
 
 
-def main():
-    path = "write down your json path"
+def main(argv):
+    path = argv[1]
     
     with open(path, 'r', encoding='utf-8') as json_file:
         data = json.load(json_file)
@@ -57,11 +75,12 @@ def main():
     func_cnt = parse_func_cnt(data)
     func_ret = parse_func_ret(data)
     func_name = parse_func_name(data)
-    param_type, var_name = parse_param_var(data)
+    param_type, param_name = parse_param(data)
     if_cnt = parse_if_cnt(data)
     
-    print_analysis(func_cnt, func_ret, func_name, param_type, var_name, if_cnt)
+    print_analysis(func_cnt, func_ret, func_name, param_type, param_name, if_cnt)
 
 
 if __name__=="__main__":
-    main()
+    argv = sys.argv
+    main(argv)
