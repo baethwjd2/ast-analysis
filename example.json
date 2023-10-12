@@ -1,0 +1,1178 @@
+{
+    "_nodetype": "FileAST",
+    "coord": null,
+    "ext": [
+        {
+            "_nodetype": "FuncDef",
+            "body": {
+                "_nodetype": "Compound",
+                "block_items": [
+                    {
+                        "_nodetype": "FuncCall",
+                        "args": {
+                            "_nodetype": "ExprList",
+                            "coord": "example.c:2:12",
+                            "exprs": [
+                                {
+                                    "_nodetype": "Constant",
+                                    "coord": "example.c:2:12",
+                                    "type": "string",
+                                    "value": "\"hello, world\""
+                                }
+                            ]
+                        },
+                        "coord": "example.c:2:5",
+                        "name": {
+                            "_nodetype": "ID",
+                            "coord": "example.c:2:5",
+                            "name": "printf"
+                        }
+                    },
+                    {
+                        "_nodetype": "Return",
+                        "coord": "example.c:3:5",
+                        "expr": {
+                            "_nodetype": "ID",
+                            "coord": "example.c:3:12",
+                            "name": "a"
+                        }
+                    }
+                ],
+                "coord": "example.c:1:1"
+            },
+            "coord": "example.c:1:5",
+            "decl": {
+                "_nodetype": "Decl",
+                "align": [],
+                "bitsize": null,
+                "coord": "example.c:1:5",
+                "funcspec": [],
+                "init": null,
+                "name": "hello_world",
+                "quals": [],
+                "storage": [],
+                "type": {
+                    "_nodetype": "FuncDecl",
+                    "args": {
+                        "_nodetype": "ParamList",
+                        "coord": "example.c:1:21",
+                        "params": [
+                            {
+                                "_nodetype": "Decl",
+                                "align": [],
+                                "bitsize": null,
+                                "coord": "example.c:1:21",
+                                "funcspec": [],
+                                "init": null,
+                                "name": "a",
+                                "quals": [],
+                                "storage": [],
+                                "type": {
+                                    "_nodetype": "TypeDecl",
+                                    "align": null,
+                                    "coord": "example.c:1:21",
+                                    "declname": "a",
+                                    "quals": [],
+                                    "type": {
+                                        "_nodetype": "IdentifierType",
+                                        "coord": "example.c:1:17",
+                                        "names": [
+                                            "int"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "coord": "example.c:1:5",
+                    "type": {
+                        "_nodetype": "TypeDecl",
+                        "align": null,
+                        "coord": "example.c:1:5",
+                        "declname": "hello_world",
+                        "quals": [],
+                        "type": {
+                            "_nodetype": "IdentifierType",
+                            "coord": "example.c:1:1",
+                            "names": [
+                                "int"
+                            ]
+                        }
+                    }
+                }
+            },
+            "param_decls": null
+        },
+        {
+            "_nodetype": "FuncDef",
+            "body": {
+                "_nodetype": "Compound",
+                "block_items": [
+                    {
+                        "_nodetype": "Decl",
+                        "align": [],
+                        "bitsize": null,
+                        "coord": "example.c:9:9",
+                        "funcspec": [],
+                        "init": {
+                            "_nodetype": "InitList",
+                            "coord": "example.c:9:1",
+                            "exprs": null
+                        },
+                        "name": "matrix",
+                        "quals": [],
+                        "storage": [],
+                        "type": {
+                            "_nodetype": "ArrayDecl",
+                            "coord": "example.c:9:9",
+                            "dim": {
+                                "_nodetype": "Constant",
+                                "coord": "example.c:9:16",
+                                "type": "int",
+                                "value": "11"
+                            },
+                            "dim_quals": [],
+                            "type": {
+                                "_nodetype": "ArrayDecl",
+                                "coord": "example.c:9:9",
+                                "dim": {
+                                    "_nodetype": "Constant",
+                                    "coord": "example.c:9:20",
+                                    "type": "int",
+                                    "value": "11"
+                                },
+                                "dim_quals": [],
+                                "type": {
+                                    "_nodetype": "TypeDecl",
+                                    "align": null,
+                                    "coord": "example.c:9:9",
+                                    "declname": "matrix",
+                                    "quals": [],
+                                    "type": {
+                                        "_nodetype": "IdentifierType",
+                                        "coord": "example.c:9:5",
+                                        "names": [
+                                            "int"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "_nodetype": "For",
+                        "cond": {
+                            "_nodetype": "BinaryOp",
+                            "coord": "example.c:10:20",
+                            "left": {
+                                "_nodetype": "ID",
+                                "coord": "example.c:10:20",
+                                "name": "j"
+                            },
+                            "op": "<=",
+                            "right": {
+                                "_nodetype": "Constant",
+                                "coord": "example.c:10:23",
+                                "type": "int",
+                                "value": "10"
+                            }
+                        },
+                        "coord": "example.c:10:5",
+                        "init": {
+                            "_nodetype": "DeclList",
+                            "coord": "example.c:10:5",
+                            "decls": [
+                                {
+                                    "_nodetype": "Decl",
+                                    "align": [],
+                                    "bitsize": null,
+                                    "coord": "example.c:10:13",
+                                    "funcspec": [],
+                                    "init": {
+                                        "_nodetype": "Constant",
+                                        "coord": "example.c:10:17",
+                                        "type": "int",
+                                        "value": "1"
+                                    },
+                                    "name": "j",
+                                    "quals": [],
+                                    "storage": [],
+                                    "type": {
+                                        "_nodetype": "TypeDecl",
+                                        "align": null,
+                                        "coord": "example.c:10:13",
+                                        "declname": "j",
+                                        "quals": [],
+                                        "type": {
+                                            "_nodetype": "IdentifierType",
+                                            "coord": "example.c:10:9",
+                                            "names": [
+                                                "int"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "next": {
+                            "_nodetype": "UnaryOp",
+                            "coord": "example.c:10:27",
+                            "expr": {
+                                "_nodetype": "ID",
+                                "coord": "example.c:10:27",
+                                "name": "j"
+                            },
+                            "op": "p++"
+                        },
+                        "stmt": {
+                            "_nodetype": "Compound",
+                            "block_items": [
+                                {
+                                    "_nodetype": "For",
+                                    "cond": {
+                                        "_nodetype": "BinaryOp",
+                                        "coord": "example.c:11:24",
+                                        "left": {
+                                            "_nodetype": "ID",
+                                            "coord": "example.c:11:24",
+                                            "name": "i"
+                                        },
+                                        "op": "<=",
+                                        "right": {
+                                            "_nodetype": "Constant",
+                                            "coord": "example.c:11:27",
+                                            "type": "int",
+                                            "value": "10"
+                                        }
+                                    },
+                                    "coord": "example.c:11:9",
+                                    "init": {
+                                        "_nodetype": "DeclList",
+                                        "coord": "example.c:11:9",
+                                        "decls": [
+                                            {
+                                                "_nodetype": "Decl",
+                                                "align": [],
+                                                "bitsize": null,
+                                                "coord": "example.c:11:17",
+                                                "funcspec": [],
+                                                "init": {
+                                                    "_nodetype": "Constant",
+                                                    "coord": "example.c:11:21",
+                                                    "type": "int",
+                                                    "value": "1"
+                                                },
+                                                "name": "i",
+                                                "quals": [],
+                                                "storage": [],
+                                                "type": {
+                                                    "_nodetype": "TypeDecl",
+                                                    "align": null,
+                                                    "coord": "example.c:11:17",
+                                                    "declname": "i",
+                                                    "quals": [],
+                                                    "type": {
+                                                        "_nodetype": "IdentifierType",
+                                                        "coord": "example.c:11:13",
+                                                        "names": [
+                                                            "int"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "next": {
+                                        "_nodetype": "UnaryOp",
+                                        "coord": "example.c:11:31",
+                                        "expr": {
+                                            "_nodetype": "ID",
+                                            "coord": "example.c:11:31",
+                                            "name": "i"
+                                        },
+                                        "op": "p++"
+                                    },
+                                    "stmt": {
+                                        "_nodetype": "Compound",
+                                        "block_items": [
+                                            {
+                                                "_nodetype": "FuncCall",
+                                                "args": {
+                                                    "_nodetype": "ExprList",
+                                                    "coord": "example.c:12:19",
+                                                    "exprs": [
+                                                        {
+                                                            "_nodetype": "Constant",
+                                                            "coord": "example.c:12:19",
+                                                            "type": "string",
+                                                            "value": "\"%d \""
+                                                        },
+                                                        {
+                                                            "_nodetype": "UnaryOp",
+                                                            "coord": "example.c:12:26",
+                                                            "expr": {
+                                                                "_nodetype": "ArrayRef",
+                                                                "coord": "example.c:12:26",
+                                                                "name": {
+                                                                    "_nodetype": "ArrayRef",
+                                                                    "coord": "example.c:12:26",
+                                                                    "name": {
+                                                                        "_nodetype": "ID",
+                                                                        "coord": "example.c:12:26",
+                                                                        "name": "matrix"
+                                                                    },
+                                                                    "subscript": {
+                                                                        "_nodetype": "ID",
+                                                                        "coord": "example.c:12:33",
+                                                                        "name": "j"
+                                                                    }
+                                                                },
+                                                                "subscript": {
+                                                                    "_nodetype": "ID",
+                                                                    "coord": "example.c:12:36",
+                                                                    "name": "i"
+                                                                }
+                                                            },
+                                                            "op": "&"
+                                                        }
+                                                    ]
+                                                },
+                                                "coord": "example.c:12:13",
+                                                "name": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:12:13",
+                                                    "name": "scanf"
+                                                }
+                                            }
+                                        ],
+                                        "coord": "example.c:11:1"
+                                    }
+                                }
+                            ],
+                            "coord": "example.c:10:1"
+                        }
+                    },
+                    {
+                        "_nodetype": "Decl",
+                        "align": [],
+                        "bitsize": null,
+                        "coord": "example.c:15:9",
+                        "funcspec": [],
+                        "init": null,
+                        "name": "x",
+                        "quals": [],
+                        "storage": [],
+                        "type": {
+                            "_nodetype": "TypeDecl",
+                            "align": null,
+                            "coord": "example.c:15:9",
+                            "declname": "x",
+                            "quals": [],
+                            "type": {
+                                "_nodetype": "IdentifierType",
+                                "coord": "example.c:15:5",
+                                "names": [
+                                    "int"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "_nodetype": "Decl",
+                        "align": [],
+                        "bitsize": null,
+                        "coord": "example.c:15:11",
+                        "funcspec": [],
+                        "init": null,
+                        "name": "y",
+                        "quals": [],
+                        "storage": [],
+                        "type": {
+                            "_nodetype": "TypeDecl",
+                            "align": null,
+                            "coord": "example.c:15:11",
+                            "declname": "y",
+                            "quals": [],
+                            "type": {
+                                "_nodetype": "IdentifierType",
+                                "coord": "example.c:15:5",
+                                "names": [
+                                    "int"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "_nodetype": "Assignment",
+                        "coord": "example.c:16:5",
+                        "lvalue": {
+                            "_nodetype": "ID",
+                            "coord": "example.c:16:5",
+                            "name": "x"
+                        },
+                        "op": "=",
+                        "rvalue": {
+                            "_nodetype": "Constant",
+                            "coord": "example.c:16:9",
+                            "type": "int",
+                            "value": "2"
+                        }
+                    },
+                    {
+                        "_nodetype": "Assignment",
+                        "coord": "example.c:17:5",
+                        "lvalue": {
+                            "_nodetype": "ID",
+                            "coord": "example.c:17:5",
+                            "name": "y"
+                        },
+                        "op": "=",
+                        "rvalue": {
+                            "_nodetype": "Constant",
+                            "coord": "example.c:17:9",
+                            "type": "int",
+                            "value": "2"
+                        }
+                    },
+                    {
+                        "_nodetype": "While",
+                        "cond": {
+                            "_nodetype": "Constant",
+                            "coord": "example.c:19:11",
+                            "type": "int",
+                            "value": "1"
+                        },
+                        "coord": "example.c:19:5",
+                        "stmt": {
+                            "_nodetype": "Compound",
+                            "block_items": [
+                                {
+                                    "_nodetype": "If",
+                                    "cond": {
+                                        "_nodetype": "BinaryOp",
+                                        "coord": "example.c:22:12",
+                                        "left": {
+                                            "_nodetype": "ArrayRef",
+                                            "coord": "example.c:22:12",
+                                            "name": {
+                                                "_nodetype": "ArrayRef",
+                                                "coord": "example.c:22:12",
+                                                "name": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:22:12",
+                                                    "name": "matrix"
+                                                },
+                                                "subscript": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:22:19",
+                                                    "name": "x"
+                                                }
+                                            },
+                                            "subscript": {
+                                                "_nodetype": "ID",
+                                                "coord": "example.c:22:22",
+                                                "name": "y"
+                                            }
+                                        },
+                                        "op": "==",
+                                        "right": {
+                                            "_nodetype": "Constant",
+                                            "coord": "example.c:22:28",
+                                            "type": "int",
+                                            "value": "0"
+                                        }
+                                    },
+                                    "coord": "example.c:22:9",
+                                    "iffalse": null,
+                                    "iftrue": {
+                                        "_nodetype": "Compound",
+                                        "block_items": [
+                                            {
+                                                "_nodetype": "Assignment",
+                                                "coord": "example.c:23:13",
+                                                "lvalue": {
+                                                    "_nodetype": "ArrayRef",
+                                                    "coord": "example.c:23:13",
+                                                    "name": {
+                                                        "_nodetype": "ArrayRef",
+                                                        "coord": "example.c:23:13",
+                                                        "name": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:23:13",
+                                                            "name": "matrix"
+                                                        },
+                                                        "subscript": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:23:20",
+                                                            "name": "x"
+                                                        }
+                                                    },
+                                                    "subscript": {
+                                                        "_nodetype": "ID",
+                                                        "coord": "example.c:23:23",
+                                                        "name": "y"
+                                                    }
+                                                },
+                                                "op": "=",
+                                                "rvalue": {
+                                                    "_nodetype": "Constant",
+                                                    "coord": "example.c:23:28",
+                                                    "type": "int",
+                                                    "value": "9"
+                                                }
+                                            },
+                                            {
+                                                "_nodetype": "UnaryOp",
+                                                "coord": "example.c:24:13",
+                                                "expr": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:24:13",
+                                                    "name": "y"
+                                                },
+                                                "op": "p++"
+                                            }
+                                        ],
+                                        "coord": "example.c:22:1"
+                                    }
+                                },
+                                {
+                                    "_nodetype": "If",
+                                    "cond": {
+                                        "_nodetype": "BinaryOp",
+                                        "coord": "example.c:26:12",
+                                        "left": {
+                                            "_nodetype": "ArrayRef",
+                                            "coord": "example.c:26:12",
+                                            "name": {
+                                                "_nodetype": "ArrayRef",
+                                                "coord": "example.c:26:12",
+                                                "name": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:26:12",
+                                                    "name": "matrix"
+                                                },
+                                                "subscript": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:26:19",
+                                                    "name": "x"
+                                                }
+                                            },
+                                            "subscript": {
+                                                "_nodetype": "ID",
+                                                "coord": "example.c:26:22",
+                                                "name": "y"
+                                            }
+                                        },
+                                        "op": "==",
+                                        "right": {
+                                            "_nodetype": "Constant",
+                                            "coord": "example.c:26:28",
+                                            "type": "int",
+                                            "value": "1"
+                                        }
+                                    },
+                                    "coord": "example.c:26:9",
+                                    "iffalse": null,
+                                    "iftrue": {
+                                        "_nodetype": "Compound",
+                                        "block_items": [
+                                            {
+                                                "_nodetype": "UnaryOp",
+                                                "coord": "example.c:27:13",
+                                                "expr": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:27:13",
+                                                    "name": "y"
+                                                },
+                                                "op": "p--"
+                                            },
+                                            {
+                                                "_nodetype": "UnaryOp",
+                                                "coord": "example.c:28:13",
+                                                "expr": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:28:13",
+                                                    "name": "x"
+                                                },
+                                                "op": "p++"
+                                            }
+                                        ],
+                                        "coord": "example.c:26:1"
+                                    }
+                                },
+                                {
+                                    "_nodetype": "If",
+                                    "cond": {
+                                        "_nodetype": "BinaryOp",
+                                        "coord": "example.c:31:12",
+                                        "left": {
+                                            "_nodetype": "ArrayRef",
+                                            "coord": "example.c:31:12",
+                                            "name": {
+                                                "_nodetype": "ArrayRef",
+                                                "coord": "example.c:31:12",
+                                                "name": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:31:12",
+                                                    "name": "matrix"
+                                                },
+                                                "subscript": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:31:19",
+                                                    "name": "x"
+                                                }
+                                            },
+                                            "subscript": {
+                                                "_nodetype": "ID",
+                                                "coord": "example.c:31:22",
+                                                "name": "y"
+                                            }
+                                        },
+                                        "op": "==",
+                                        "right": {
+                                            "_nodetype": "Constant",
+                                            "coord": "example.c:31:28",
+                                            "type": "int",
+                                            "value": "2"
+                                        }
+                                    },
+                                    "coord": "example.c:31:9",
+                                    "iffalse": {
+                                        "_nodetype": "If",
+                                        "cond": {
+                                            "_nodetype": "BinaryOp",
+                                            "coord": "example.c:35:17",
+                                            "left": {
+                                                "_nodetype": "BinaryOp",
+                                                "coord": "example.c:35:17",
+                                                "left": {
+                                                    "_nodetype": "ArrayRef",
+                                                    "coord": "example.c:35:17",
+                                                    "name": {
+                                                        "_nodetype": "ArrayRef",
+                                                        "coord": "example.c:35:17",
+                                                        "name": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:35:17",
+                                                            "name": "matrix"
+                                                        },
+                                                        "subscript": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:35:24",
+                                                            "name": "x"
+                                                        }
+                                                    },
+                                                    "subscript": {
+                                                        "_nodetype": "BinaryOp",
+                                                        "coord": "example.c:35:27",
+                                                        "left": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:35:27",
+                                                            "name": "y"
+                                                        },
+                                                        "op": "+",
+                                                        "right": {
+                                                            "_nodetype": "Constant",
+                                                            "coord": "example.c:35:29",
+                                                            "type": "int",
+                                                            "value": "1"
+                                                        }
+                                                    }
+                                                },
+                                                "op": "==",
+                                                "right": {
+                                                    "_nodetype": "Constant",
+                                                    "coord": "example.c:35:35",
+                                                    "type": "int",
+                                                    "value": "1"
+                                                }
+                                            },
+                                            "op": "&&",
+                                            "right": {
+                                                "_nodetype": "BinaryOp",
+                                                "coord": "example.c:35:40",
+                                                "left": {
+                                                    "_nodetype": "ArrayRef",
+                                                    "coord": "example.c:35:40",
+                                                    "name": {
+                                                        "_nodetype": "ArrayRef",
+                                                        "coord": "example.c:35:40",
+                                                        "name": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:35:40",
+                                                            "name": "matrix"
+                                                        },
+                                                        "subscript": {
+                                                            "_nodetype": "BinaryOp",
+                                                            "coord": "example.c:35:47",
+                                                            "left": {
+                                                                "_nodetype": "ID",
+                                                                "coord": "example.c:35:47",
+                                                                "name": "x"
+                                                            },
+                                                            "op": "+",
+                                                            "right": {
+                                                                "_nodetype": "Constant",
+                                                                "coord": "example.c:35:49",
+                                                                "type": "int",
+                                                                "value": "1"
+                                                            }
+                                                        }
+                                                    },
+                                                    "subscript": {
+                                                        "_nodetype": "ID",
+                                                        "coord": "example.c:35:52",
+                                                        "name": "y"
+                                                    }
+                                                },
+                                                "op": "==",
+                                                "right": {
+                                                    "_nodetype": "Constant",
+                                                    "coord": "example.c:35:58",
+                                                    "type": "int",
+                                                    "value": "1"
+                                                }
+                                            }
+                                        },
+                                        "coord": "example.c:35:14",
+                                        "iffalse": null,
+                                        "iftrue": {
+                                            "_nodetype": "Compound",
+                                            "block_items": [
+                                                {
+                                                    "_nodetype": "If",
+                                                    "cond": {
+                                                        "_nodetype": "BinaryOp",
+                                                        "coord": "example.c:36:16",
+                                                        "left": {
+                                                            "_nodetype": "ArrayRef",
+                                                            "coord": "example.c:36:16",
+                                                            "name": {
+                                                                "_nodetype": "ArrayRef",
+                                                                "coord": "example.c:36:16",
+                                                                "name": {
+                                                                    "_nodetype": "ID",
+                                                                    "coord": "example.c:36:16",
+                                                                    "name": "matrix"
+                                                                },
+                                                                "subscript": {
+                                                                    "_nodetype": "ID",
+                                                                    "coord": "example.c:36:23",
+                                                                    "name": "x"
+                                                                }
+                                                            },
+                                                            "subscript": {
+                                                                "_nodetype": "ID",
+                                                                "coord": "example.c:36:26",
+                                                                "name": "y"
+                                                            }
+                                                        },
+                                                        "op": "==",
+                                                        "right": {
+                                                            "_nodetype": "Constant",
+                                                            "coord": "example.c:36:32",
+                                                            "type": "int",
+                                                            "value": "0"
+                                                        }
+                                                    },
+                                                    "coord": "example.c:36:13",
+                                                    "iffalse": null,
+                                                    "iftrue": {
+                                                        "_nodetype": "Compound",
+                                                        "block_items": [
+                                                            {
+                                                                "_nodetype": "Assignment",
+                                                                "coord": "example.c:37:17",
+                                                                "lvalue": {
+                                                                    "_nodetype": "ArrayRef",
+                                                                    "coord": "example.c:37:17",
+                                                                    "name": {
+                                                                        "_nodetype": "ArrayRef",
+                                                                        "coord": "example.c:37:17",
+                                                                        "name": {
+                                                                            "_nodetype": "ID",
+                                                                            "coord": "example.c:37:17",
+                                                                            "name": "matrix"
+                                                                        },
+                                                                        "subscript": {
+                                                                            "_nodetype": "ID",
+                                                                            "coord": "example.c:37:24",
+                                                                            "name": "x"
+                                                                        }
+                                                                    },
+                                                                    "subscript": {
+                                                                        "_nodetype": "ID",
+                                                                        "coord": "example.c:37:27",
+                                                                        "name": "y"
+                                                                    }
+                                                                },
+                                                                "op": "=",
+                                                                "rvalue": {
+                                                                    "_nodetype": "Constant",
+                                                                    "coord": "example.c:37:32",
+                                                                    "type": "int",
+                                                                    "value": "9"
+                                                                }
+                                                            }
+                                                        ],
+                                                        "coord": "example.c:36:1"
+                                                    }
+                                                },
+                                                {
+                                                    "_nodetype": "Break",
+                                                    "coord": "example.c:39:13"
+                                                }
+                                            ],
+                                            "coord": "example.c:35:1"
+                                        }
+                                    },
+                                    "iftrue": {
+                                        "_nodetype": "Compound",
+                                        "block_items": [
+                                            {
+                                                "_nodetype": "Assignment",
+                                                "coord": "example.c:32:13",
+                                                "lvalue": {
+                                                    "_nodetype": "ArrayRef",
+                                                    "coord": "example.c:32:13",
+                                                    "name": {
+                                                        "_nodetype": "ArrayRef",
+                                                        "coord": "example.c:32:13",
+                                                        "name": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:32:13",
+                                                            "name": "matrix"
+                                                        },
+                                                        "subscript": {
+                                                            "_nodetype": "ID",
+                                                            "coord": "example.c:32:20",
+                                                            "name": "x"
+                                                        }
+                                                    },
+                                                    "subscript": {
+                                                        "_nodetype": "ID",
+                                                        "coord": "example.c:32:23",
+                                                        "name": "y"
+                                                    }
+                                                },
+                                                "op": "=",
+                                                "rvalue": {
+                                                    "_nodetype": "Constant",
+                                                    "coord": "example.c:32:28",
+                                                    "type": "int",
+                                                    "value": "9"
+                                                }
+                                            },
+                                            {
+                                                "_nodetype": "Break",
+                                                "coord": "example.c:33:13"
+                                            }
+                                        ],
+                                        "coord": "example.c:31:1"
+                                    }
+                                }
+                            ],
+                            "coord": "example.c:19:1"
+                        }
+                    },
+                    {
+                        "_nodetype": "For",
+                        "cond": {
+                            "_nodetype": "BinaryOp",
+                            "coord": "example.c:47:20",
+                            "left": {
+                                "_nodetype": "ID",
+                                "coord": "example.c:47:20",
+                                "name": "i"
+                            },
+                            "op": "<=",
+                            "right": {
+                                "_nodetype": "Constant",
+                                "coord": "example.c:47:25",
+                                "type": "int",
+                                "value": "10"
+                            }
+                        },
+                        "coord": "example.c:47:5",
+                        "init": {
+                            "_nodetype": "DeclList",
+                            "coord": "example.c:47:5",
+                            "decls": [
+                                {
+                                    "_nodetype": "Decl",
+                                    "align": [],
+                                    "bitsize": null,
+                                    "coord": "example.c:47:13",
+                                    "funcspec": [],
+                                    "init": {
+                                        "_nodetype": "Constant",
+                                        "coord": "example.c:47:17",
+                                        "type": "int",
+                                        "value": "1"
+                                    },
+                                    "name": "i",
+                                    "quals": [],
+                                    "storage": [],
+                                    "type": {
+                                        "_nodetype": "TypeDecl",
+                                        "align": null,
+                                        "coord": "example.c:47:13",
+                                        "declname": "i",
+                                        "quals": [],
+                                        "type": {
+                                            "_nodetype": "IdentifierType",
+                                            "coord": "example.c:47:9",
+                                            "names": [
+                                                "int"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "next": {
+                            "_nodetype": "UnaryOp",
+                            "coord": "example.c:47:29",
+                            "expr": {
+                                "_nodetype": "ID",
+                                "coord": "example.c:47:29",
+                                "name": "i"
+                            },
+                            "op": "p++"
+                        },
+                        "stmt": {
+                            "_nodetype": "Compound",
+                            "block_items": [
+                                {
+                                    "_nodetype": "For",
+                                    "cond": {
+                                        "_nodetype": "BinaryOp",
+                                        "coord": "example.c:48:23",
+                                        "left": {
+                                            "_nodetype": "ID",
+                                            "coord": "example.c:48:23",
+                                            "name": "j"
+                                        },
+                                        "op": "<=",
+                                        "right": {
+                                            "_nodetype": "Constant",
+                                            "coord": "example.c:48:28",
+                                            "type": "int",
+                                            "value": "10"
+                                        }
+                                    },
+                                    "coord": "example.c:48:9",
+                                    "init": {
+                                        "_nodetype": "DeclList",
+                                        "coord": "example.c:48:9",
+                                        "decls": [
+                                            {
+                                                "_nodetype": "Decl",
+                                                "align": [],
+                                                "bitsize": null,
+                                                "coord": "example.c:48:17",
+                                                "funcspec": [],
+                                                "init": {
+                                                    "_nodetype": "Constant",
+                                                    "coord": "example.c:48:20",
+                                                    "type": "int",
+                                                    "value": "1"
+                                                },
+                                                "name": "j",
+                                                "quals": [],
+                                                "storage": [],
+                                                "type": {
+                                                    "_nodetype": "TypeDecl",
+                                                    "align": null,
+                                                    "coord": "example.c:48:17",
+                                                    "declname": "j",
+                                                    "quals": [],
+                                                    "type": {
+                                                        "_nodetype": "IdentifierType",
+                                                        "coord": "example.c:48:13",
+                                                        "names": [
+                                                            "int"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "next": {
+                                        "_nodetype": "UnaryOp",
+                                        "coord": "example.c:48:32",
+                                        "expr": {
+                                            "_nodetype": "ID",
+                                            "coord": "example.c:48:32",
+                                            "name": "j"
+                                        },
+                                        "op": "p++"
+                                    },
+                                    "stmt": {
+                                        "_nodetype": "Compound",
+                                        "block_items": [
+                                            {
+                                                "_nodetype": "FuncCall",
+                                                "args": {
+                                                    "_nodetype": "ExprList",
+                                                    "coord": "example.c:49:20",
+                                                    "exprs": [
+                                                        {
+                                                            "_nodetype": "Constant",
+                                                            "coord": "example.c:49:20",
+                                                            "type": "string",
+                                                            "value": "\"%d \""
+                                                        },
+                                                        {
+                                                            "_nodetype": "ArrayRef",
+                                                            "coord": "example.c:49:26",
+                                                            "name": {
+                                                                "_nodetype": "ArrayRef",
+                                                                "coord": "example.c:49:26",
+                                                                "name": {
+                                                                    "_nodetype": "ID",
+                                                                    "coord": "example.c:49:26",
+                                                                    "name": "matrix"
+                                                                },
+                                                                "subscript": {
+                                                                    "_nodetype": "ID",
+                                                                    "coord": "example.c:49:33",
+                                                                    "name": "i"
+                                                                }
+                                                            },
+                                                            "subscript": {
+                                                                "_nodetype": "ID",
+                                                                "coord": "example.c:49:36",
+                                                                "name": "j"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "coord": "example.c:49:13",
+                                                "name": {
+                                                    "_nodetype": "ID",
+                                                    "coord": "example.c:49:13",
+                                                    "name": "printf"
+                                                }
+                                            }
+                                        ],
+                                        "coord": "example.c:48:1"
+                                    }
+                                },
+                                {
+                                    "_nodetype": "FuncCall",
+                                    "args": {
+                                        "_nodetype": "ExprList",
+                                        "coord": "example.c:51:16",
+                                        "exprs": [
+                                            {
+                                                "_nodetype": "Constant",
+                                                "coord": "example.c:51:16",
+                                                "type": "string",
+                                                "value": "\"\\n\""
+                                            }
+                                        ]
+                                    },
+                                    "coord": "example.c:51:9",
+                                    "name": {
+                                        "_nodetype": "ID",
+                                        "coord": "example.c:51:9",
+                                        "name": "printf"
+                                    }
+                                }
+                            ],
+                            "coord": "example.c:47:1"
+                        }
+                    },
+                    {
+                        "_nodetype": "Decl",
+                        "align": [],
+                        "bitsize": null,
+                        "coord": "example.c:54:9",
+                        "funcspec": [],
+                        "init": {
+                            "_nodetype": "FuncCall",
+                            "args": {
+                                "_nodetype": "ExprList",
+                                "coord": "example.c:54:25",
+                                "exprs": [
+                                    {
+                                        "_nodetype": "ID",
+                                        "coord": "example.c:54:25",
+                                        "name": "x"
+                                    }
+                                ]
+                            },
+                            "coord": "example.c:54:13",
+                            "name": {
+                                "_nodetype": "ID",
+                                "coord": "example.c:54:13",
+                                "name": "hello_world"
+                            }
+                        },
+                        "name": "a",
+                        "quals": [],
+                        "storage": [],
+                        "type": {
+                            "_nodetype": "TypeDecl",
+                            "align": null,
+                            "coord": "example.c:54:9",
+                            "declname": "a",
+                            "quals": [],
+                            "type": {
+                                "_nodetype": "IdentifierType",
+                                "coord": "example.c:54:5",
+                                "names": [
+                                    "int"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "_nodetype": "Return",
+                        "coord": "example.c:56:5",
+                        "expr": {
+                            "_nodetype": "Constant",
+                            "coord": "example.c:56:12",
+                            "type": "int",
+                            "value": "0"
+                        }
+                    }
+                ],
+                "coord": "example.c:8:1"
+            },
+            "coord": "example.c:7:5",
+            "decl": {
+                "_nodetype": "Decl",
+                "align": [],
+                "bitsize": null,
+                "coord": "example.c:7:5",
+                "funcspec": [],
+                "init": null,
+                "name": "main",
+                "quals": [],
+                "storage": [],
+                "type": {
+                    "_nodetype": "FuncDecl",
+                    "args": null,
+                    "coord": "example.c:7:5",
+                    "type": {
+                        "_nodetype": "TypeDecl",
+                        "align": null,
+                        "coord": "example.c:7:5",
+                        "declname": "main",
+                        "quals": [],
+                        "type": {
+                            "_nodetype": "IdentifierType",
+                            "coord": "example.c:7:1",
+                            "names": [
+                                "int"
+                            ]
+                        }
+                    }
+                }
+            },
+            "param_decls": null
+        }
+    ]
+}
