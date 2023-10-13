@@ -53,6 +53,9 @@ def parse_if_cnt(data):
 
 def print_analysis(func_cnt, func_ret, func_name, param_type, param_name, if_cnt):
 
+    print("Number of Function:", func_cnt)
+    print("")
+    
     for i in range(func_cnt):
         print("Function", i+1)
         print("- Name:", func_name[i])
