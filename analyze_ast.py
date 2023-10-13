@@ -6,8 +6,9 @@ import json
 def parse_func_cnt(data):
     func_cnt = 0
     
-    # write your code
-    
+    for i in data["ext"]:
+        if i["_nodetype"]=="FuncDef":
+            func_cnt+=1
     return func_cnt
 
 
@@ -51,8 +52,7 @@ def parse_if_cnt(data):
 
 
 def print_analysis(func_cnt, func_ret, func_name, param_type, param_name, if_cnt):
-    func_cnt = len(func_name) # func_cnt로 나중에 교체
-    
+
     for i in range(func_cnt):
         print("Function", i+1)
         print("- Name:", func_name[i])
