@@ -3,7 +3,7 @@
 #include "cJSON.h"
 #include "cJSON.c"
 
-void AnalyzeFunction(char *jsonString, long fileSize) {
+void parse_func_return_type(char *jsonString, long fileSize) {
     cJSON *root = cJSON_Parse(jsonString);
     if (root == NULL) {
         printf("Error: Unable to parse the JSON root\n");
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
     jsonString[fileSize] = '\0';
     fclose(file);
 
-    AnalyzeFunction(jsonString, fileSize);
+    parse_func_return_type(jsonString, fileSize);
 
     free(jsonString);
 
