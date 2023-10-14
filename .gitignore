@@ -1,2 +1,4 @@
 .vscode
 analyze_ast
+gkdudans/*.c
+gkdudans/*.h
