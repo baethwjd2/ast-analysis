@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include "json_c.c"
 #include <string.h>
+#include <setjmp.h>
+
+jmp_buf buf;
 
 #define MAX 1000000
-
 
 void parse_func_name(json_value decl){
     char* func_name = json_get_string(json_get(decl, "name"));
@@ -64,51 +66,72 @@ void parse_func_var(json_value decl){
     putchar('\n');
 }
 
+// int recursive_count_if(json_value body) {
+//     int cnt_if = 0;
+//     // int cnt_else_if = 0;
+
+//     json_value first_node = json_get(body, "_nodetype");
+//     char* first__nodetype = json_get_string(first_node);
+    
+//     if(strcmp(first__nodetype,"If") == 0) {
+//         cnt_if++;
+//         return cnt_if;
+//     }
+    
+//     if(strcmp(first__nodetype, "Compound") != 0) {        
+//         return cnt_if;
+//     }
+
+//     json_value block_items = json_get(body, "block_items");
+
+//     for(int i=0; i<json_len(block_items); i++) {
+//         json_value node = json_get(body, "block_items", i, "_nodetype");
+//         char* _nodetype = json_get_string(node);
+
+//         if (strcmp(_nodetype, "If")==0) {
+//             cnt_if++;
+
+//             json_value iftrue = json_get(body, "block_items", i, "iftrue");
+//             json_value iffalse = json_get(body, "block_items", i, "iffalse");
+
+//             if(json_is_null(iftrue) == 0) {
+//                 cnt_if += recursive_count_if(iftrue);
+//             }
+
+//             if(json_is_null(iffalse) == 0) {
+//                 cnt_if += recursive_count_if(iffalse);
+//             }
+
+//         }
+//     }
+//     return cnt_if;
+// }
+
 int recursive_count_if(json_value body) {
     int cnt_if = 0;
-    int cnt_else_if = 0;
 
-    json_value first_node = json_get(body, "_nodetype");
-    char* first__nodetype = json_get_string(first_node);
+    if (setjmp(buf) == 0) { // 예외처리
+        json_value first_node = json_get(body, "_nodetype");
+        char* first__nodetype = json_get_string(first_node);
 
-    printf("first__nodetype : %s\n", first__nodetype);
-    if(first__nodetype == "If") {
-        cnt_if++;
-        return cnt_if;
-    }
-    
-    if(first__nodetype != "Compound") {
-        printf("dsds : %s\n", first__nodetype);
-        return cnt_if;
-    }    
-
-    json_value block_items = json_get(body, "block_items");
-
-    for(int i=0; i<json_len(block_items); i++) {
-        json_value node = json_get(body, "block_items", i, "_nodetype");
-        char* _nodetype = json_get_string(node);
-
-        if (strcmp(_nodetype, "If")==0) {
+        if(strcmp(first__nodetype,"If") == 0) {
             cnt_if++;
-
-            json_value iftrue = json_get(body, "block_items", i, "iftrue");
-            json_value iffalse = json_get(body, "block_items", i, "iffalse");
-
-            if(json_is_null(iftrue) == 0) {
-                cnt_if += recursive_count_if(iftrue);
-            }
-
-            if(json_is_null(iffalse) == 0) {
-                cnt_if += recursive_count_if(iffalse);
-            }
-
         }
+
     }
-    return cnt_if;    
+    // printf("fsdfsd : %d", json_len(body));
+    // // printf("aaaa %s", body[0]);
+    // for (int i = 0; i < json_len(body); i++) {
+    //     cnt_if += recursive_count_if(json_get(body));
+    // }
+
+    return cnt_if;
 }
 
 void count_if_statements(json_value body) {
-    printf("- Number of IF Statement: %d\n", recursive_count_if(body));    
+    // int a, b = recursive_count_if(body);
+    // printf("- Number of IF Statement: %d\n", a);
+    printf("- Number of ELSE IF Statement: %d\n", recursive_count_if(body));
 }
 
 int main(int argc, char* argv[]){
