@@ -64,6 +64,22 @@ void parse_func_var(json_value decl){
     putchar('\n');
 }
 
+void count_if_statements(json_value body) {
+    int cnt_if = 0;
+
+    json_value block_items = json_get(body, "block_items");    
+
+    for(int i=0; i<json_len(block_items); i++) {
+        json_value node = json_get(body, "block_items", i, "_nodetype");
+        char* _nodetype = json_get_string(node);
+
+        if (strcmp(_nodetype, "If")==0) {
+            cnt_if++;
+        }
+    }
+    printf("- Number of IF Statement: %d\n", cnt_if);
+}
+
 int main(int argc, char* argv[]){
     FILE* fp = fopen(argv[1], "r");  
     char file[MAX] = {0, };
@@ -73,7 +89,7 @@ int main(int argc, char* argv[]){
     fclose(fp); 
     
     json_value data = json_create(file);
-    json_value ext = json_get(data, "ext");    
+    json_value ext = json_get(data, "ext");
 
     for(int i=0; i<json_len(ext); i++){
         json_value node = json_get(data, "ext", i, "_nodetype");
