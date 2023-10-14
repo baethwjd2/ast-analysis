@@ -22,17 +22,21 @@ void parse_func_var(json_value decl){
         json_value params = json_get(args, "params");
 
         printf("- Parameter Name: "); 
-        for(int i=0; i<json_len(params); i++){
-            char *name = json_get_string(json_get(args, "params", i, "name"));
 
-            printf("%s", strtok(name, "\""));
+        for(int i=0; i<json_len(params); i++){
+            json_value name = json_get(args, "params", i, "name");
+            if(json_is_null(name)) continue;
+
+            printf("%s", strtok(json_get_string(name), "\""));
 
             if(i!=json_len(params)-1) printf(", ");
-            else putchar('\n');
-        } 
+        } putchar('\n'); 
 
         printf("- Parameter Type: "); 
         for(int i=0; i<json_len(params); i++){
+            json_value name = json_get(args, "params", i, "name");
+            if(json_is_null(name)) continue;
+
             json_value param = json_get(args, "params", i, "type");
             json_value type = json_get(param, "type");
             json_value node = json_get(type, "_nodetype");
@@ -51,9 +55,8 @@ void parse_func_var(json_value decl){
             if (strcmp(json_get_string(node2), "PtrDecl")==0) printf(" *");
 
             if(i!=json_len(params)-1) printf(", ");
-            else putchar('\n');
         } 
-    }
+    } putchar('\n');
 }
 
 
@@ -81,15 +84,14 @@ int main(int argc, char* argv[]){
             
             parse_func_name(decl);
             parse_func_var(decl);
-        }
 
-        putchar('\n');
+            putchar('\n');
+        }
     }
-    
+
     printf("Total Number of Function: %d\n", func_cnt);
 
     json_free(data);
 
     return 0;
 }
-    
