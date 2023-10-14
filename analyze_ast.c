@@ -4,14 +4,69 @@
 #define MAX 1000000
 
 
-char* parse_func_name(json_value decl){
-    char* func_name = "";
+void parse_func_name(json_value decl){
+    char* func_name = json_get_string(json_get(decl, "name"));
 
-    json_value name = json_get(decl, "name");
-    printf("- Name: "); json_print(name); putchar("\n");
-
-    return func_name;
+    printf("- Name: %s\n", strtok(func_name, "\""));
 }
+
+
+void parse_func_var(json_value decl){
+    char* var_name="", var_type="";
+
+    json_value type = json_get(decl, "type");
+    json_value args = json_get(type, "args");
+    
+    if(!json_is_null(args)){
+        json_value params = json_get(args, "params");
+
+        printf("- Parameter Name: "); 
+        for(int i=0; i<json_len(params); i++){
+            char *name = json_get_string(json_get(args, "params", i, "name"));
+            
+            //json_value name = json_get(param, "name");
+            //json_value type = json_get(json_get(param, "type"), "names");
+
+            printf("%s", strtok(name, "\""));
+
+            if(i!=json_len(params)-1) printf(", ");
+            else putchar('\n');
+            //printf("- Parameter Type: "); json_print(type); putchar("\n");
+        } 
+
+        printf("- Parameter Type: "); 
+        for(int i=0; i<json_len(params); i++){
+            json_value param = json_get(args, "params", i, "type");
+            json_value type = json_get(param, "type");
+            json_value node = json_get(type, "_nodetype");
+
+            
+           
+            // json_value node = json_get(type, "_nodetype");
+            
+            if (strcmp(json_get_string(node), "TypeDecl")==0){   
+                json_value type2 = json_get(type, "type");
+                json_value var_type = json_get(type2, "names", 0);
+                
+                printf("%s", json_get_string(var_type));
+                
+            }else{
+                json_value var_type = json_get(type, "names", 0);
+                
+                printf("%s", json_get_string(var_type));
+            }
+            json_value node2 = json_get(param, "_nodetype");
+            
+            if (strcmp(json_get_string(node2), "PtrDecl")==0){
+                printf(" *");
+            }
+
+            if(i!=json_len(params)-1) printf(", ");
+            else putchar('\n');
+        } 
+    }
+}
+
 
 int main(int argc, char* argv[]){
     FILE* fp = fopen(argv[1], "r");  
@@ -35,6 +90,7 @@ int main(int argc, char* argv[]){
             json_value body = json_get(data, "ext", i, "body");
             json_value decl = json_get(data, "ext", i, "decl");
             parse_func_name(decl);
+            parse_func_var(decl);
         }
     }
     
@@ -44,4 +100,3 @@ int main(int argc, char* argv[]){
 
     return 0;
 }
-    
