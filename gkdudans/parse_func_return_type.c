@@ -30,13 +30,9 @@ void parse_func_return_type(char *jsonString, long fileSize) {
 
                 cJSON *name = cJSON_GetObjectItem(declaration, "name");
                 cJSON *returnType = cJSON_GetObjectItem(type, "type");
-
-                cJSON *returnTypeName = cJSON_GetObjectItem(returnType, "type");
-                if (returnTypeName) {
-                    cJSON *nameValue = cJSON_GetArrayItem(returnTypeName, 0);
-                    printf("Function name: %s\n", cJSON_PrintUnformatted(name));
-                    printf("Return type: %s\n", cJSON_PrintUnformatted(nameValue));
-                }
+                
+                printf("Function name: %s\n", cJSON_PrintUnformatted(name));
+                printf("Return type: %s\n", cJSON_PrintUnformatted(returnType));
             }
         }
 
