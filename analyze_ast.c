@@ -56,9 +56,13 @@ void parse_func_var(json_value decl){
 
             if(i!=json_len(params)-1) printf(", ");
         } 
-    } putchar('\n');
+    } else {
+        printf("- Parameter Name: NULL\n");
+        printf("- Parameter Type: NULL");
+    }
+    
+    putchar('\n');
 }
-
 
 int main(int argc, char* argv[]){
     FILE* fp = fopen(argv[1], "r");  
@@ -69,7 +73,7 @@ int main(int argc, char* argv[]){
     fclose(fp); 
     
     json_value data = json_create(file);
-    json_value ext = json_get(data, "ext");
+    json_value ext = json_get(data, "ext");    
 
     for(int i=0; i<json_len(ext); i++){
         json_value node = json_get(data, "ext", i, "_nodetype");
@@ -84,6 +88,7 @@ int main(int argc, char* argv[]){
             
             parse_func_name(decl);
             parse_func_var(decl);
+            count_if_statements(body);
 
             putchar('\n');
         }
