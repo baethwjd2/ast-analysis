@@ -1,3 +1,7 @@
+// Mac : brew install jansson
+// Ubuntu : sudo apt-get install libjansson-dev
+// gcc -o count_if_statements count_if_statements.c -ljansson -w 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <jansson.h>
