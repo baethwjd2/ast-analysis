@@ -82,6 +82,8 @@ int main(int argc, char* argv[]){
             parse_func_name(decl);
             parse_func_var(decl);
         }
+
+        putchar('\n');
     }
     
     printf("Total Number of Function: %d\n", func_cnt);
