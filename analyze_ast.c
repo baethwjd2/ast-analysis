@@ -63,6 +63,35 @@ void parse_func_var(json_value decl){
     putchar('\n');
 }
 
+int countSubstring(char *str, char *substr) {
+    int cnt = 0;
+    int sub_len = strlen(substr);
+
+    while (*str) {
+        if (strncmp(str, substr, sub_len) == 0) {
+            cnt++;
+            str += sub_len - 1;
+        }
+        str++;
+    }
+
+    return cnt;
+}
+
+void count_if_statements(json_value body) {
+    FILE* fp = fopen("./func_body.txt", "w");  
+    json_fprint(fp, body);
+    fclose(fp); 
+    FILE* fp2 = fopen("./func_body.txt", "r"); 
+    char body_str[MAX] = {0, }; 
+    fread(body_str, 1, MAX, fp); 
+    fclose(fp2); 
+
+    int result = countSubstring(body_str, "\"_nodetype\": \"If\"");
+
+    printf("- Number of IF Statement: %d\n", result);
+}
+
 int main(int argc, char* argv[]){
     FILE* fp = fopen(argv[1], "r");  
     char file[MAX] = {0, };
@@ -87,7 +116,7 @@ int main(int argc, char* argv[]){
             
             parse_func_name(decl);
             parse_func_var(decl);
-            // count_if_statements(body);
+            count_if_statements(body);
 
             putchar('\n');
         }
