@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "json_c.c"
 #include <string.h>
+
 #define MAX 1000000
 
 
@@ -23,15 +24,11 @@ void parse_func_var(json_value decl){
         printf("- Parameter Name: "); 
         for(int i=0; i<json_len(params); i++){
             char *name = json_get_string(json_get(args, "params", i, "name"));
-            
-            //json_value name = json_get(param, "name");
-            //json_value type = json_get(json_get(param, "type"), "names");
 
             printf("%s", strtok(name, "\""));
 
             if(i!=json_len(params)-1) printf(", ");
             else putchar('\n');
-            //printf("- Parameter Type: "); json_print(type); putchar("\n");
         } 
 
         printf("- Parameter Type: "); 
@@ -39,27 +36,19 @@ void parse_func_var(json_value decl){
             json_value param = json_get(args, "params", i, "type");
             json_value type = json_get(param, "type");
             json_value node = json_get(type, "_nodetype");
-
-            
-           
-            // json_value node = json_get(type, "_nodetype");
             
             if (strcmp(json_get_string(node), "TypeDecl")==0){   
                 json_value type2 = json_get(type, "type");
                 json_value var_type = json_get(type2, "names", 0);
-                
                 printf("%s", json_get_string(var_type));
-                
             }else{
                 json_value var_type = json_get(type, "names", 0);
-                
                 printf("%s", json_get_string(var_type));
             }
+
             json_value node2 = json_get(param, "_nodetype");
             
-            if (strcmp(json_get_string(node2), "PtrDecl")==0){
-                printf(" *");
-            }
+            if (strcmp(json_get_string(node2), "PtrDecl")==0) printf(" *");
 
             if(i!=json_len(params)-1) printf(", ");
             else putchar('\n');
@@ -89,6 +78,7 @@ int main(int argc, char* argv[]){
             
             json_value body = json_get(data, "ext", i, "body");
             json_value decl = json_get(data, "ext", i, "decl");
+            
             parse_func_name(decl);
             parse_func_var(decl);
         }
@@ -100,3 +90,4 @@ int main(int argc, char* argv[]){
 
     return 0;
 }
+    
