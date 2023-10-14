@@ -11,6 +11,29 @@ void parse_func_name(json_value decl){
 }
 
 
+void parse_ret_type(json_value decl) {
+    json_value type = json_get(decl, "type");
+    json_value node = json_get(type, "_nodetype");
+
+    if(strcmp(json_get_string(node), "TypeDecl")!=0) type = json_get(type, "type");
+
+    json_value type2 = json_get(type, "type");
+    json_value rets = json_get(type2, "names");
+
+    //"PtrDecl"
+
+    printf("- Return Type: ");
+    for(int i=0; i<json_len(rets); i++){
+        if(i==2) json_print(type2);
+        json_value ret = json_get(rets, i);
+        printf("%s ", strtok(json_get_string(ret), "\""));
+    }
+    
+    if(strcmp(json_get_string(node), "PtrDecl")==0) putchar('*');
+    putchar('\n');
+}
+
+
 void parse_func_var(json_value decl){
     char* var_name="", var_type="";
 
@@ -113,8 +136,9 @@ int main(int argc, char* argv[]){
             
             json_value body = json_get(data, "ext", i, "body");
             json_value decl = json_get(data, "ext", i, "decl");
-            
+
             parse_func_name(decl);
+            parse_ret_type(json_get(decl, "type"));
             parse_func_var(decl);
             count_if_statements(body);
 
