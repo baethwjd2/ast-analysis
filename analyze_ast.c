@@ -67,7 +67,16 @@ void parse_func_var(json_value decl){
 int recursive_count_if(json_value body) {
     int cnt_if = 0;
 
-    json_value block_items = json_get(body, "block_items");    
+    json_value first_node = json_get(body, "_nodetype");
+    char* first__nodetype = json_get_string(first_node);
+
+    if(first__nodetype == "If") {
+        cnt_if++;
+        return cnt_if;
+    }
+
+
+    json_value block_items = json_get(body, "block_items");
 
     for(int i=0; i<json_len(block_items); i++) {
         json_value node = json_get(body, "block_items", i, "_nodetype");
