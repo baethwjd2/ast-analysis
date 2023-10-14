@@ -66,15 +66,21 @@ void parse_func_var(json_value decl){
 
 int recursive_count_if(json_value body) {
     int cnt_if = 0;
+    int cnt_else_if = 0;
 
     json_value first_node = json_get(body, "_nodetype");
     char* first__nodetype = json_get_string(first_node);
 
+    printf("first__nodetype : %s\n", first__nodetype);
     if(first__nodetype == "If") {
         cnt_if++;
         return cnt_if;
     }
-
+    
+    if(first__nodetype != "Compound") {
+        printf("dsds : %s\n", first__nodetype);
+        return cnt_if;
+    }    
 
     json_value block_items = json_get(body, "block_items");
 
@@ -89,11 +95,11 @@ int recursive_count_if(json_value body) {
             json_value iffalse = json_get(body, "block_items", i, "iffalse");
 
             if(json_is_null(iftrue) == 0) {
-                // cnt_if += recursive_count_if(iftrue);
+                cnt_if += recursive_count_if(iftrue);
             }
 
             if(json_is_null(iffalse) == 0) {
-                // cnt_if += recursive_count_if(iffalse);
+                cnt_if += recursive_count_if(iffalse);
             }
 
         }
