@@ -64,7 +64,7 @@ void parse_func_var(json_value decl){
     putchar('\n');
 }
 
-void count_if_statements(json_value body) {
+int recursive_count_if(json_value body) {
     int cnt_if = 0;
 
     json_value block_items = json_get(body, "block_items");    
@@ -75,9 +75,25 @@ void count_if_statements(json_value body) {
 
         if (strcmp(_nodetype, "If")==0) {
             cnt_if++;
+
+            json_value iftrue = json_get(body, "block_items", i, "iftrue");
+            json_value iffalse = json_get(body, "block_items", i, "iffalse");
+
+            if(json_is_null(iftrue) == 0) {
+                // cnt_if += recursive_count_if(iftrue);
+            }
+
+            if(json_is_null(iffalse) == 0) {
+                // cnt_if += recursive_count_if(iffalse);
+            }
+
         }
     }
-    printf("- Number of IF Statement: %d\n", cnt_if);
+    return cnt_if;    
+}
+
+void count_if_statements(json_value body) {
+    printf("- Number of IF Statement: %d\n", recursive_count_if(body));    
 }
 
 int main(int argc, char* argv[]){
